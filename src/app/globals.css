@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
+/* Brand palette, lifted from the printed business card: a deep forest
+   green paired with the card's pale mint (#D5E9DE, the client's own
+   hex). Dark mode reproduces the card almost exactly (dark ground,
+   mint ink); light mode is the same hue family the other way round —
+   no brown/taupe anywhere, everything sits in the green family. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --ink: #262b21;
+  --ink-soft: #57604f;
+  --paper: #f4f9f6;
+  --paper-2: #d5e9de;
+  --paper-3: #c2dace;
+  --line: rgba(38, 43, 33, 0.14);
+  --shadow: rgba(38, 43, 33, 0.16);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --moss: #37452f;
+  --moss-deep: #242d1f;
+  --amber: #6c8e71;
+  --amber-soft: #dceee3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --ink: #d5e9de;
+    --ink-soft: #a9c2ae;
+    --paper: #232b1f;
+    --paper-2: #2c3527;
+    --paper-3: #384231;
+    --line: rgba(213, 233, 222, 0.14);
+    --shadow: rgba(0, 0, 0, 0.4);
+
+    --moss: #b9d2be;
+    --moss-deep: #d5e9de;
+    --amber: #8fad91;
+    --amber-soft: #1d2419;
   }
 }
 
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-moss: var(--moss);
+  --color-moss-deep: var(--moss-deep);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-line: var(--line);
+  --font-display: var(--font-jost);
+  --font-body: var(--font-karla);
+  --font-data: var(--font-plex-mono);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), "Karla", system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), "Jost", system-ui, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+
+.font-data {
+  font-family: var(--font-data), "IBM Plex Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/** The "HAIRARCHIE" wordmark, styled after the business card: thin,
+    tall, widely tracked uppercase. */
+.logo-mark {
+  font-family: var(--font-display), "Jost", system-ui, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 3px;
 }

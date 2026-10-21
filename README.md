@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# hairarchie — Website & Terminbuchung
 
-## Getting Started
+Next.js-Website für den Friseursalon hairarchie in Bremen, mit eigenem
+Buchungssystem (kein Drittanbieter). Läuft komplett ohne Datenbank im
+lokalen Test (Buchungen im Arbeitsspeicher) und schaltet automatisch auf
+eine echte Postgres-Datenbank (Supabase) um, sobald die Zugangsdaten
+gesetzt sind — der Rest der App muss dafür nicht angefasst werden.
 
-First, run the development server:
+## Was ist fertig
+
+- Startseite: Hero, Leistungen ("Die Hairarchie" — vier Preis-Stufen aus
+  eurer aktuellen SumUp-Liste), Team, Öffnungszeiten/Adresse.
+- `/termin`: vierstufiger Buchungsablauf (Leistung → Stylist:in → Termin →
+  Kontaktdaten), verhindert Doppelbuchungen serverseitig.
+- `/admin`: passwortgeschützte Übersicht aller anstehenden Buchungen,
+  Stornieren-Funktion.
+
+## Vor dem Launch unbedingt anpassen
+
+- **Team**: `src/lib/data/stylists.ts` enthält drei Platzhalter-Personen
+  (Mila, Yusuf, Elif) — durch das echte Team ersetzen.
+- **Leistungen/Preise**: `src/lib/data/services.ts`, aus eurer SumUp-Seite
+  übernommen. Ein Eintrag war dort schwer lesbar ("Was komplett") — hier
+  als "Waschen komplett" angenommen, bitte prüfen.
+- **Admin-Zugangscode**: steht in `.env.local` (`ADMIN_PASSWORD`), vor
+  dem Livegang durch einen eigenen, langen Code ersetzen.
+- Auf der SumUp-Seite gab es eine Kategorie "Damen" ohne eigene Einträge —
+  falls es tatsächlich separate Damen-Leistungen gibt, bitte ergänzen.
+
+## Lokal starten
 
 ```bash
+npm install
+cp .env.local.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ohne ausgefüllte `SUPABASE_*`-Variablen läuft die Seite sofort mit einer
+temporären In-Memory-Datenbank (Buchungen gehen bei jedem Neustart
+verloren — gut zum Ausprobieren, nicht für den echten Betrieb).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`ADMIN_PASSWORD` und `ADMIN_SESSION_SECRET` müssen in jedem Fall gesetzt
+sein, auch lokal (siehe `.env.local.example`; Secret mit
+`openssl rand -base64 32` erzeugen).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Live schalten: Supabase + Vercel
 
-## Learn More
+### 1. Supabase-Projekt (Datenbank)
 
-To learn more about Next.js, take a look at the following resources:
+1. Auf [supabase.com](https://supabase.com) kostenlos registrieren, neues
+   Projekt anlegen (Region z. B. Frankfurt).
+2. Im Projekt: **SQL Editor → New query**, den Inhalt von
+   `supabase/schema.sql` einfügen und ausführen.
+3. **Project Settings → API**: `Project URL` und den `service_role`-Key
+   kopieren (nicht den `anon`-Key — der wird hier nicht verwendet).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Vercel-Projekt (Hosting)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Projekt in ein eigenes GitHub-Repo pushen (`git remote add origin …`,
+   `git push`).
+2. Auf [vercel.com](https://vercel.com) mit GitHub anmelden, das Repo
+   importieren.
+3. Unter **Environment Variables** eintragen:
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `ADMIN_PASSWORD`
+   - `ADMIN_SESSION_SECRET` (neu erzeugen, nicht den lokalen Wert wiederverwenden)
+4. Deploy anstoßen. Ihr bekommt eine `*.vercel.app`-URL.
 
-## Deploy on Vercel
+### 3. Eigene Domain verbinden
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In Vercel: **Project → Settings → Domains**, eure Domain eintragen und
+die angezeigten DNS-Einträge beim Domain-Anbieter setzen. Sag mir
+Bescheid, sobald ihr die Domain habt — dann gehe ich das mit dir durch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Admin-Dashboard
+
+`/admin` — mit dem `ADMIN_PASSWORD` anmelden, zeigt alle künftigen
+Termine chronologisch, mit Stornieren-Button.
