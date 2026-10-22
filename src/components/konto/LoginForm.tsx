@@ -42,7 +42,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="focus-ring rounded-full bg-moss px-7 py-3 font-medium text-paper transition-colors enabled:hover:bg-moss-deep disabled:opacity-40"
+        className="focus-ring rounded-full bg-btn px-7 py-3 font-medium text-on-btn transition-colors enabled:hover:bg-btn-hover disabled:opacity-40"
       >
         {pending ? "Melde an …" : "Anmelden"}
       </button>

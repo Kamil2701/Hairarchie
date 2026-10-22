@@ -77,7 +77,7 @@ export default async function AccountPage() {
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
           href="/termin"
-          className="focus-ring rounded-full bg-moss px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-moss-deep"
+          className="focus-ring rounded-full bg-btn px-5 py-2.5 text-sm font-medium text-on-btn transition-colors hover:bg-btn-hover"
         >
           Termin buchen
         </Link>

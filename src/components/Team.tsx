@@ -15,8 +15,8 @@ export function Team() {
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
           {stylists.map((stylist) => (
             <div key={stylist.id} className="flex flex-col items-start">
-              <div className="flex h-36 w-28 items-end justify-center rounded-t-[3.5rem] bg-gradient-to-b from-amber-soft to-moss pb-5">
-                <span className="font-display text-3xl font-semibold text-paper">
+              <div className="flex h-36 w-28 items-end justify-center rounded-t-[3.5rem] bg-gradient-to-b from-amber-soft to-btn pb-5">
+                <span className="font-display text-3xl font-semibold text-on-btn">
                   {stylist.name.charAt(0)}
                 </span>
               </div>

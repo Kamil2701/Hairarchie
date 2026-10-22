@@ -151,7 +151,7 @@ export default async function AdminDashboardPage() {
                               <input type="hidden" name="id" value={booking.id} />
                               <button
                                 type="submit"
-                                className="focus-ring rounded-full bg-moss px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-moss-deep"
+                                className="focus-ring rounded-full bg-btn px-4 py-2 text-sm font-medium text-on-btn transition-colors hover:bg-btn-hover"
                               >
                                 Erschienen
                               </button>

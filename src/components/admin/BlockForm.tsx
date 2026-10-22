@@ -188,7 +188,7 @@ export function BlockForm({ stylists }: { stylists: Stylist[] }) {
             onClick={() => {
               if (forceRef.current) forceRef.current.value = "1";
             }}
-            className="focus-ring self-start rounded-full bg-moss px-6 py-3 text-sm font-medium text-paper transition-colors enabled:hover:bg-moss-deep disabled:opacity-40"
+            className="focus-ring self-start rounded-full bg-btn px-6 py-3 text-sm font-medium text-on-btn transition-colors enabled:hover:bg-btn-hover disabled:opacity-40"
           >
             Trotzdem blockieren
           </button>

@@ -186,7 +186,7 @@ export function BookingFlow({ tiers, addOnServices, stylists, dates }: Props) {
             type="button"
             disabled={serviceIds.length === 0}
             onClick={() => setStep(1)}
-            className="focus-ring self-start rounded-full bg-moss px-7 py-3 font-medium text-paper transition-colors enabled:hover:bg-moss-deep disabled:opacity-40"
+            className="focus-ring self-start rounded-full bg-btn px-7 py-3 font-medium text-on-btn transition-colors enabled:hover:bg-btn-hover disabled:opacity-40"
           >
             Weiter
           </button>
@@ -231,7 +231,7 @@ export function BookingFlow({ tiers, addOnServices, stylists, dates }: Props) {
               type="button"
               disabled={!stylistId}
               onClick={() => setStep(2)}
-              className="focus-ring rounded-full bg-moss px-7 py-3 font-medium text-paper transition-colors enabled:hover:bg-moss-deep disabled:opacity-40"
+              className="focus-ring rounded-full bg-btn px-7 py-3 font-medium text-on-btn transition-colors enabled:hover:bg-btn-hover disabled:opacity-40"
             >
               Weiter
             </button>
@@ -294,7 +294,7 @@ export function BookingFlow({ tiers, addOnServices, stylists, dates }: Props) {
                           !slot.available
                             ? "cursor-not-allowed border-line text-ink-soft/40 line-through"
                             : startMin === slot.startMin
-                              ? "border-moss bg-moss text-paper"
+                              ? "border-moss bg-btn text-on-btn"
                               : "border-line text-ink hover:bg-paper-2"
                         }`}
                       >
@@ -319,7 +319,7 @@ export function BookingFlow({ tiers, addOnServices, stylists, dates }: Props) {
               type="button"
               disabled={startMin === null}
               onClick={() => setStep(3)}
-              className="focus-ring rounded-full bg-moss px-7 py-3 font-medium text-paper transition-colors enabled:hover:bg-moss-deep disabled:opacity-40"
+              className="focus-ring rounded-full bg-btn px-7 py-3 font-medium text-on-btn transition-colors enabled:hover:bg-btn-hover disabled:opacity-40"
             >
               Weiter
             </button>
@@ -436,7 +436,7 @@ export function BookingFlow({ tiers, addOnServices, stylists, dates }: Props) {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="focus-ring rounded-full bg-moss px-7 py-3 font-medium text-paper transition-colors enabled:hover:bg-moss-deep disabled:opacity-40"
+              className="focus-ring rounded-full bg-btn px-7 py-3 font-medium text-on-btn transition-colors enabled:hover:bg-btn-hover disabled:opacity-40"
             >
               {isSubmitting ? "Wird gebucht …" : "Termin verbindlich buchen"}
             </button>

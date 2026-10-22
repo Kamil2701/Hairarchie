@@ -41,7 +41,7 @@ export function Header() {
           </Link>
           <Link
             href="/termin"
-            className="focus-ring hidden rounded-full bg-moss px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-moss-deep sm:inline-block"
+            className="focus-ring hidden rounded-full bg-btn px-5 py-2.5 text-sm font-medium text-on-btn transition-colors hover:bg-btn-hover sm:inline-block"
           >
             Termin buchen
           </Link>
@@ -85,7 +85,7 @@ export function Header() {
             <Link
               href="/termin"
               onClick={() => setOpen(false)}
-              className="focus-ring mt-2 rounded-full bg-moss px-5 py-3 text-center text-sm font-medium text-paper"
+              className="focus-ring mt-2 rounded-full bg-btn px-5 py-3 text-center text-sm font-medium text-on-btn"
             >
               Termin buchen
             </Link>

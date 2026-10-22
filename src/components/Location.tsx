@@ -36,7 +36,7 @@ export function Location() {
             href={mapsHref}
             target="_blank"
             rel="noreferrer"
-            className="focus-ring mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-moss px-6 py-3 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5 hover:bg-moss-deep"
+            className="focus-ring mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-btn px-6 py-3 text-sm font-medium text-on-btn transition-transform hover:-translate-y-0.5 hover:bg-btn-hover"
           >
             Route planen
           </a>

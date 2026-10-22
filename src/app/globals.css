@@ -1,40 +1,32 @@
 @import "tailwindcss";
 
-/* Brand palette, lifted from the printed business card: a deep forest
-   green paired with the card's pale mint (#D5E9DE, the client's own
-   hex). Dark mode reproduces the card almost exactly (dark ground,
-   mint ink); light mode is the same hue family the other way round —
-   no brown/taupe anywhere, everything sits in the green family. */
+/* Brand palette: black ground, light type, and one accent — a bright sky
+   blue (#009ACD, the client's own hex) for headings, labels and buttons.
+   One dark theme for everyone — no light/dark switch — so the site looks
+   the same on every device. Text on blue buttons is near-black because
+   white on #009ACD is too low-contrast to read comfortably. */
 :root {
-  --ink: #262b21;
-  --ink-soft: #57604f;
-  --paper: #f4f9f6;
-  --paper-2: #d5e9de;
-  --paper-3: #c2dace;
-  --line: rgba(38, 43, 33, 0.14);
-  --shadow: rgba(38, 43, 33, 0.16);
+  color-scheme: dark;
 
-  --moss: #37452f;
-  --moss-deep: #242d1f;
-  --amber: #6c8e71;
-  --amber-soft: #dceee3;
-}
+  --ink: #f4f7f9;
+  --ink-soft: #a9b6bf;
+  --paper: #000000;
+  --paper-2: #0d1418;
+  --paper-3: #172127;
+  --line: rgba(255, 255, 255, 0.16);
+  --shadow: rgba(0, 0, 0, 0.6);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ink: #d5e9de;
-    --ink-soft: #a9c2ae;
-    --paper: #232b1f;
-    --paper-2: #2c3527;
-    --paper-3: #384231;
-    --line: rgba(213, 233, 222, 0.14);
-    --shadow: rgba(0, 0, 0, 0.4);
+  --heading: #009acd;
+  /* accent for small labels, borders and focus rings */
+  --moss: #009acd;
+  --moss-deep: #009acd;
+  --amber: #009acd;
+  --amber-soft: #0a1a22;
 
-    --moss: #b9d2be;
-    --moss-deep: #d5e9de;
-    --amber: #8fad91;
-    --amber-soft: #1d2419;
-  }
+  /* filled buttons and selected states */
+  --btn: #009acd;
+  --btn-hover: #2ab0dc;
+  --on-btn: #04121a;
 }
 
 @theme inline {
@@ -47,14 +39,20 @@
   --color-moss-deep: var(--moss-deep);
   --color-amber: var(--amber);
   --color-amber-soft: var(--amber-soft);
+  --color-btn: var(--btn);
+  --color-btn-hover: var(--btn-hover);
+  --color-on-btn: var(--on-btn);
   --color-line: var(--line);
   --font-display: var(--font-jost);
   --font-body: var(--font-karla);
   --font-data: var(--font-plex-mono);
 }
 
-* {
-  border-color: var(--line);
+/* In the base layer so utilities like `border-moss` can override it. */
+@layer base {
+  * {
+    border-color: var(--line);
+  }
 }
 
 html {
@@ -72,6 +70,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display), "Jost", system-ui, sans-serif;
+  color: var(--heading);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.03em;

@@ -100,12 +100,12 @@ export function DayCalendar({ date, stylists, bookings, blocks }: Props) {
                 return (
                   <div
                     key={booking.id}
-                    className="absolute inset-x-1 overflow-hidden rounded-lg bg-moss px-2 py-1 text-xs text-paper shadow-sm"
+                    className="absolute inset-x-1 overflow-hidden rounded-lg bg-btn px-2 py-1 text-xs text-on-btn shadow-sm"
                     style={{ top: `${topFor(booking.startMin)}%`, height: `${heightFor(booking.startMin, endMin)}%` }}
                   >
                     <p className="font-data">{minutesToLabel(booking.startMin)}</p>
                     <p className="truncate font-medium">{booking.customerName}</p>
-                    <p className="truncate text-paper/80">{label}</p>
+                    <p className="truncate text-on-btn/80">{label}</p>
                   </div>
                 );
               })}

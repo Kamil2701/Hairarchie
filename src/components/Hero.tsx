@@ -29,7 +29,7 @@ export function Hero() {
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <Link
             href="/termin"
-            className="focus-ring rounded-full bg-moss px-7 py-3.5 font-medium text-paper shadow-[0_10px_30px_-12px_var(--shadow)] transition-transform hover:-translate-y-0.5 hover:bg-moss-deep"
+            className="focus-ring rounded-full bg-btn px-7 py-3.5 font-medium text-on-btn shadow-[0_10px_30px_-12px_var(--shadow)] transition-transform hover:-translate-y-0.5 hover:bg-btn-hover"
           >
             Termin buchen
           </Link>
